@@ -1,5 +1,5 @@
 {
-  "name": "github",
+  "name": "cookies-shop",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "express": "^4.18.1",
     "mongoose": "^6.3.4",
-    "nodemon": "^2.0.16",
-    "path": "^0.12.7"
+    "nodemon": "^2.0.16"
   }
 }
