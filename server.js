@@ -10,6 +10,7 @@ const {DBConnect} = require('./DBConnect')
 
 DBConnect;
 
+app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 app.listen(PORT, ()=>{
     console.log(`listen on http://localhost:${PORT}`)
 })
