@@ -1,15 +1,25 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 // const path = require('path')
 const PORT = process.env.PORT || 4578
+
 app.use(express.static("client/build"))
 // app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.use(express.json())
 
-const {DBConnect} = require('./DBConnect')
+const { DBConnect } = require('./DBConnect')
 
-DBConnect;
+try {
+    DBConnect;
+} catch (error) {
+    console.log(error)
+}
 
-app.listen(PORT, ()=>{
-    console.log(`listen on http://localhost:${PORT}`)
-})
+try {
+    app.listen(PORT, () => {
+        console.log(`listen on http://localhost:${PORT}`)
+    })
+} catch (error) {
+    console.log(error)
+}
+
