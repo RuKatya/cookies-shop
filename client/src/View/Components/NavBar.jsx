@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { IconButton, InputBase, Paper } from "@mui/material";
+import { Divider, IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const NavBar = ({ pageWidth }) => {
@@ -36,7 +36,8 @@ const NavBar = ({ pageWidth }) => {
         sx={{ p: "1px 4px", display: "flex", alignItems: "center" }}
       >
         <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
-        <IconButton>
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
           <SearchIcon />
         </IconButton>
       </Paper>
