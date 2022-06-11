@@ -25,11 +25,6 @@ const NavBar = ({ pageWidth }) => {
         <ShoppingCartOutlinedIcon />
       </Link>
 
-      {/* <div className="searchInput">
-        <SearchOutlinedIcon className="searchInput__searchIcon" />
-        <input type="text" name="searchCookie" placeholder="Search" />
-      </div> */}
-
       <Paper
         component="form"
         className="searchInput"

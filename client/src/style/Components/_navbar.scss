@@ -25,22 +25,16 @@ nav {
         }
     }
 
-    .searchInput {
-        position: relative;
+    // .searchInput {
+    //     input {
+    //         width: 95%;
+    //     }
 
-        &__searchIcon {
-            position: absolute;
-        }
-
-        input {
-            width: 95%;
-        }
-
-        @media (max-width:700px) {
-            grid-column: 1/4;
-            grid-row: 2/3;
-        }
-    }
+    //     @media (max-width:700px) {
+    //         grid-column: 1/4;
+    //         grid-row: 2/3;
+    //     }
+    // }
 
     .logReg {
 
