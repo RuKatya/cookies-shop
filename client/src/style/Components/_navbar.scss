@@ -1,11 +1,11 @@
 nav {
     // background-color: aquamarine;
     display: grid;
-    grid-template-columns: 1fr 6fr 1.5fr 1fr;
+    grid-template-columns: 0.8fr 6fr 1.5fr 1fr;
     justify-items: stretch;
     align-items: center;
     column-gap: 2%;
-    padding: 1% 2%;
+    padding: 0.5% 2%;
 
     @media (max-width:1150px) {
         grid-template-columns: 2fr 6fr 4fr 2fr;
@@ -13,9 +13,14 @@ nav {
     }
 
     @media (max-width:700px) {
-        grid-template-columns: 5fr 5fr 0.5fr;
+        grid-template-columns: 3fr 5fr 0.5fr;
     }
 
+    .logo {
+        img {
+            width: 100%;
+        }
+    }
 
     .menuBtn {
         display: none;
@@ -25,19 +30,14 @@ nav {
         }
     }
 
-    // .searchInput {
-    //     input {
-    //         width: 95%;
-    //     }
-
-    //     @media (max-width:700px) {
-    //         grid-column: 1/4;
-    //         grid-row: 2/3;
-    //     }
-    // }
+    .searchInput {
+        @media (max-width:700px) {
+            grid-column: 1/4;
+            grid-row: 2/3;
+        }
+    }
 
     .logReg {
-
         display: flex;
         flex-direction: row;
         justify-content: space-between;
