@@ -37,8 +37,7 @@ nav {
     }
 
     .logReg {
-        background-color: white;
-        box-shadow: 0px 0px 5px black;
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -55,6 +54,8 @@ nav {
         }
 
         @media (max-width:700px) {
+            background-color: white;
+            box-shadow: 0px 0px 5px black;
             flex-direction: column;
             position: absolute;
             top: 0;
