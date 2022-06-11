@@ -26,6 +26,12 @@ nav {
     }
 
     .searchInput {
+        position: relative;
+
+        &__searchIcon {
+            position: absolute;
+        }
+
         input {
             width: 95%;
         }
