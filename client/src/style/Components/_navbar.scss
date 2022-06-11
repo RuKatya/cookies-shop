@@ -1,0 +1,44 @@
+nav {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1.5fr 1fr;
+    justify-items: stretch;
+    align-items: center;
+    column-gap: 2%;
+    padding: 1% 2%;
+
+    @media (max-width:1150px) {
+        grid-template-columns: 2fr 6fr 4fr 1.5fr;
+    }
+
+    @media (max-width:700px) {
+        grid-template-columns: 5fr 5fr 0.5fr;
+    }
+
+
+    .menuBtn {
+        display: none;
+
+        @media (max-width:700px) {
+            display: block;
+        }
+    }
+
+    .searchInput {
+        input {
+            width: 100%;
+        }
+
+        @media (max-width:700px) {
+            grid-column: 1/4;
+            grid-row: 2/3;
+        }
+    }
+
+    .logReg {
+        background-color: aqua;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
