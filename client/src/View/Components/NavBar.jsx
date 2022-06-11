@@ -6,8 +6,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Divider, IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const NavBar = ({ pageWidth }) => {
-  console.log(pageWidth);
+const NavBar = ({ pageWidth, userAuth }) => {
+  // console.log(pageWidth);
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const toggleNav = () => {
@@ -23,6 +23,7 @@ const NavBar = ({ pageWidth }) => {
 
     // const {data} = await axios.get('', {inputSearch})
     // console.log(data)
+
     if (e.type === "click") {
       inputSearch.value = "";
     }
@@ -63,11 +64,17 @@ const NavBar = ({ pageWidth }) => {
 
       {(toggleMenu || pageWidth > 700) && (
         <div className="logReg">
-          <CloseIcon className="logReg__closeBtn" onClick={toggleNav} />
-          <div className="logReg__links">
-            <Link to="login">Login</Link>
-            <Link to="reg">Registration</Link>
-          </div>
+          {userAuth ? (
+            <>Go nahui!!!</>
+          ) : (
+            <>
+              <CloseIcon className="logReg__closeBtn" onClick={toggleNav} />
+              <div className="logReg__links">
+                <Link to="auth">Login</Link>
+                <Link to="auth/registration">Registration</Link>
+              </div>
+            </>
+          )}
         </div>
       )}
 
