@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const NavBar = ({ pageWidth }) => {
   console.log(pageWidth);
@@ -24,8 +25,11 @@ const NavBar = ({ pageWidth }) => {
 
       {(toggleMenu || pageWidth > 700) && (
         <div className="logReg">
-          <Link to="login">Login</Link>
-          <Link to="reg">Registration</Link>
+          <CloseIcon className="logReg__closeBtn" onClick={toggleNav} />
+          <div className="logReg__links">
+            <Link to="login">Login</Link>
+            <Link to="reg">Registration</Link>
+          </div>
         </div>
       )}
 
