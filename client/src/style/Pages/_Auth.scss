@@ -1,0 +1,31 @@
+@import '../Components/login';
+@import '../Components/regist';
+
+.authUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // background-color: aqua;
+    height: 70vh;
+    justify-content: center;
+}
+
+.loginForm,
+.registForm {
+    display: flex;
+    flex-direction: column;
+    width: clamp(250px, 25%, 600px);
+    align-items: center;
+
+    form {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+}
+
+.registBtn,
+.loginBtn {
+    color: purple;
+    font-weight: 600;
+}

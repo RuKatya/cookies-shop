@@ -70,8 +70,12 @@ const NavBar = ({ pageWidth, userAuth }) => {
             <>
               <CloseIcon className="logReg__closeBtn" onClick={toggleNav} />
               <div className="logReg__links">
-                <Link to="auth">Login</Link>
-                <Link to="auth/registration">Registration</Link>
+                <Link to="auth" onClick={toggleNav}>
+                  Login
+                </Link>
+                <Link to="auth/registration" onClick={toggleNav}>
+                  Registration
+                </Link>
               </div>
             </>
           )}
