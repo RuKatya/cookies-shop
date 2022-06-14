@@ -1,0 +1,23 @@
+.mainPage {
+    background-color: aquamarine;
+
+    &__cookiesGrid {
+        background-color: aqua;
+        width: 80%;
+        margin: 0% auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        img {
+            width: 100%;
+        }
+
+        &--information {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+
+    }
+}
