@@ -32,8 +32,6 @@ function Routers() {
             <Route path="registration" element={<Registration />} />
           </Route>
           <Route path="cart" element={<Cart />} />
-          {/* <Route path="login" element={}/> */}
-          {/* <Route path="reg" element={}/> */}
         </Route>
       </Routes>
     </BrowserRouter>

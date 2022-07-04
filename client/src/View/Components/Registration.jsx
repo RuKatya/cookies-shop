@@ -1,12 +1,18 @@
 import { Button, FormControl, InputLabel, FilledInput } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { registUser } from "../../store/actions/auth";
 
 const Registration = () => {
+  const users = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(users);
   const formRegFields = [
     { name: "name", title: "Name" },
     { name: "lastName", title: "Last name" },
     { name: "email", title: "Email" },
     { name: "password", title: "Password" },
+    { name: "confirmPassword", title: "Confirm password" },
   ];
 
   function hendleRegist(e) {
@@ -22,7 +28,21 @@ const Registration = () => {
 
     console.log(formObj);
 
-    e.target.reset();
+    if (formObj.password === formObj.confirmPassword) {
+      // send
+      dispatch(
+        registUser(
+          formObj.name,
+          formObj.lastName,
+          formObj.email,
+          formObj.password
+        )
+      );
+      e.target.reset();
+    } else {
+      //alert
+      alert(`The password is not the same`);
+    }
   }
 
   return (

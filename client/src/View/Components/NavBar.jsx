@@ -5,9 +5,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Divider, IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSelector } from "react-redux";
 
 const NavBar = ({ pageWidth, userAuth }) => {
-  // console.log(pageWidth);
+  const cart = useSelector((state) => state.cart);
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const toggleNav = () => {
@@ -21,13 +22,11 @@ const NavBar = ({ pageWidth, userAuth }) => {
     const inputSearch = document.querySelector("input[name=searchInput]");
     console.log(inputSearch.value);
 
-    // const {data} = await axios.get('', {inputSearch})
-    // console.log(data)
-
     if (e.type === "click") {
       inputSearch.value = "";
     }
   }
+
   return (
     <nav>
       <div className="logo">
@@ -36,8 +35,13 @@ const NavBar = ({ pageWidth, userAuth }) => {
         </Link>
       </div>
 
-      <Link to="cart">
+      <Link to="cart" className="cartIcon">
         <ShoppingCartOutlinedIcon />
+        <>
+          {cart.length > 0 ? (
+            <div className="cartIcon__count">{cart.length}</div>
+          ) : null}
+        </>
       </Link>
 
       <Paper
