@@ -37,7 +37,7 @@ const NavBar = ({ pageWidth }) => {
   };
 
   useEffect(() => {
-    if (user[0].cart.length > 0) {
+    if (user[0]?.cart.length > 0) {
       const pricesOfItems = user[0].cart.map((item) => item.count * item.price);
       setTotalToPay(pricesOfItems.reduce((a, b) => a + b));
     }
@@ -54,7 +54,7 @@ const NavBar = ({ pageWidth }) => {
       <Link to="cart" className="cartIcon">
         <ShoppingCartOutlinedIcon />
         <>
-          {user[0].cart.length > 0 ? (
+          {user[0]?.cart.length > 0 ? (
             <>
               <div className="cartIcon__count">{user[0].cart.length}</div>
             </>
@@ -62,7 +62,7 @@ const NavBar = ({ pageWidth }) => {
         </>
       </Link>
 
-      {user[0].cart.length > 0 ? (
+      {user[0]?.cart.length > 0 ? (
         <>
           <div>{totalToPay}$</div>
         </>
