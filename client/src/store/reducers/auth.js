@@ -10,6 +10,7 @@ export const auth = (state = [], action) => {
                 lastName: action.lastName,
                 email: action.email,
                 password: action.password,
+                cart: []
             }];
         }
         default: {

@@ -1,9 +1,7 @@
 export const getAllProducts = (state) => state.products;
 
-// export const selectProducts = (state) => state.products.filter(item => item.typeOfFood);
-
 export const selectVisibleProducts = (state, filter) => {
-    console.log(filter)
+    // console.log(filter)
     switch (filter) {
         case 'All': {
             return state.products;

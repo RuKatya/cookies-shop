@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path')
 const PORT = process.env.PORT || 4578
 
 app.use(express.static("client/build"))
@@ -12,6 +13,10 @@ try {
 } catch (error) {
     console.log(error)
 }
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
 
 try {
     app.listen(PORT, () => {

@@ -1,0 +1,1 @@
+export const getAllRegUser = (state) => state.auth;

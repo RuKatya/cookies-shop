@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_COUNT } from "../constans/cart"
+import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_COUNT, ADD_TO_CART_MORE } from "../constans/cart"
 
 export const addToCart = (id, name, count) => ({
     type: ADD_TO_CART,
@@ -7,6 +7,11 @@ export const addToCart = (id, name, count) => ({
     count
 })
 
+export const addToCartMore = (id, count) => ({
+    type: ADD_TO_CART_MORE,
+    id,
+    count
+})
 export const removeFromCart = (id) => ({
     type: REMOVE_FROM_CART,
     id

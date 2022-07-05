@@ -1,12 +1,16 @@
 import { Button, FormControl, InputLabel, FilledInput } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registUser } from "../../store/actions/auth";
+import { getAllRegUser } from "../../store/selectors/auth";
 
 const Registration = () => {
-  const users = useSelector((state) => state.auth);
+  const users = useSelector(getAllRegUser);
+  let navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(users);
+
+  // console.log(users);
+
   const formRegFields = [
     { name: "name", title: "Name" },
     { name: "lastName", title: "Last name" },
@@ -39,6 +43,8 @@ const Registration = () => {
         )
       );
       e.target.reset();
+
+      navigate("/auth"); //navigate to login page
     } else {
       //alert
       alert(`The password is not the same`);

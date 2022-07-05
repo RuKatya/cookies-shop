@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectProductFilter } from "../../store/selectors/filter";
-import { selectVisibleProducts } from "../../store/selectors/product";
+import { selectVisibleProducts } from "../../store/selectors/products";
 import CookieItem from "../Components/CookieItem";
 import Filters from "../Components/Filter";
 

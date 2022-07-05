@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Divider, IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { useSelector } from "react-redux";
+import { getUser } from "../../store/selectors/user";
+import { logoutUser } from "../../store/actions/user";
+import { useEffect } from "react";
 
-const NavBar = ({ pageWidth, userAuth }) => {
-  const cart = useSelector((state) => state.cart);
+const NavBar = ({ pageWidth }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [totalToPay, setTotalToPay] = useState();
 
   const toggleNav = () => {
     setToggleMenu(!toggleMenu);
@@ -17,7 +23,6 @@ const NavBar = ({ pageWidth, userAuth }) => {
 
   async function searchCookie(e) {
     e.preventDefault();
-    console.log(e);
 
     const inputSearch = document.querySelector("input[name=searchInput]");
     console.log(inputSearch.value);
@@ -27,22 +32,41 @@ const NavBar = ({ pageWidth, userAuth }) => {
     }
   }
 
+  const logout = () => {
+    dispatch(logoutUser);
+  };
+
+  useEffect(() => {
+    if (user[0].cart.length > 0) {
+      const pricesOfItems = user[0].cart.map((item) => item.count * item.price);
+      setTotalToPay(pricesOfItems.reduce((a, b) => a + b));
+    }
+  }, [user]);
+
   return (
     <nav>
       <div className="logo">
         <Link to="/">
-          <img src="./img/cookie-logo-small.png" alt="cookie-shop" />
+          <img src="./img/logo/cookie-logo-small.png" alt="cookie-shop" />
         </Link>
       </div>
 
       <Link to="cart" className="cartIcon">
         <ShoppingCartOutlinedIcon />
         <>
-          {cart.length > 0 ? (
-            <div className="cartIcon__count">{cart.length}</div>
+          {user[0].cart.length > 0 ? (
+            <>
+              <div className="cartIcon__count">{user[0].cart.length}</div>
+            </>
           ) : null}
         </>
       </Link>
+
+      {user[0].cart.length > 0 ? (
+        <>
+          <div>{totalToPay}$</div>
+        </>
+      ) : null}
 
       <Paper
         component="form"
@@ -68,8 +92,10 @@ const NavBar = ({ pageWidth, userAuth }) => {
 
       {(toggleMenu || pageWidth > 700) && (
         <div className="logReg">
-          {userAuth ? (
-            <>Go nahui!!!</>
+          {user.length > 0 ? (
+            <>
+              <div onClick={logout}>Logout</div>
+            </>
           ) : (
             <>
               <CloseIcon className="logReg__closeBtn" onClick={toggleNav} />

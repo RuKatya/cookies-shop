@@ -5,7 +5,6 @@ import { selectProductFilter } from "../../store/selectors/filter";
 const Filters = () => {
   const dispatch = useDispatch();
   const productFilter = useSelector(selectProductFilter);
-  console.log(productFilter);
 
   return (
     <div>

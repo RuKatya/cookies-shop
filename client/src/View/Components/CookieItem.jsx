@@ -1,20 +1,39 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/actions/cart";
+import { useSelector } from "react-redux";
+import { addCountToExistItem, addToUserCart } from "../../store/actions/user";
+import { getAllProducts } from "../../store/selectors/products";
+import { getUser } from "../../store/selectors/user";
 
 const CookieItem = ({ cookie }) => {
-  const nameOfCookie = useRef();
-  const idProduct = useRef();
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const products = useSelector(getAllProducts);
+
+  const idProduct = useRef();
+
   const [countOfCookies, setCountOfCookies] = useState(1);
 
+  // console.log(user[0].cart);
   function hendleAddToCart(e) {
     e.preventDefault();
 
-    const cookieName = nameOfCookie.current?.innerText;
+    const userId = user[0].id;
     const productId = idProduct.current.id;
 
-    dispatch(addToCart(productId, cookieName, countOfCookies));
+    const item = products.find((item) => item.id === productId);
+    item["count"] = countOfCookies;
+
+    const searchProductInCart = user[0].cart.find(
+      (item) => item.id === productId
+    );
+
+    if (searchProductInCart) {
+      dispatch(addCountToExistItem(userId, productId, countOfCookies));
+      console.log(`in cart`);
+    } else {
+      dispatch(addToUserCart(userId, item));
+    }
   }
 
   const handleCount = (symbol) => {
@@ -37,20 +56,26 @@ const CookieItem = ({ cookie }) => {
       <div key={cookie.index} id={cookie.name} className="cookie">
         <img src={`${cookie.src}_big.jpg`} alt={cookie.name} />
         <div className="mainPage__cookiesGrid--information">
-          <p ref={nameOfCookie}>{cookie.name}</p>
+          <p>{cookie.name}</p>
           <p>{cookie.price}$</p>
           <p>{cookie.typeOfFood}</p>
         </div>
-        <form onSubmit={hendleAddToCart} id={cookie.id} ref={idProduct}>
-          <button type="button" onClick={() => handleCount("-")}>
-            -
-          </button>
-          <div>{countOfCookies}</div>
-          <button type="button" onClick={() => handleCount("+")}>
-            +
-          </button>
-          <button type="submit">Add to cart</button>
-        </form>
+        {user[0] ? (
+          <>
+            <form onSubmit={hendleAddToCart} id={cookie.id} ref={idProduct}>
+              <button type="button" onClick={() => handleCount("-")}>
+                -
+              </button>
+              <div>{countOfCookies}</div>
+              <button type="button" onClick={() => handleCount("+")}>
+                +
+              </button>
+              <button type="submit">Add to cart</button>
+            </form>
+          </>
+        ) : (
+          <>Need to Login</>
+        )}
       </div>
     </div>
   );

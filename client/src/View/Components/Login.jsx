@@ -1,7 +1,18 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, FormControl, InputLabel, FilledInput } from "@mui/material";
-import { Link } from "react-router-dom";
+import { getAllRegUser } from "../../store/selectors/auth";
+import { loginUser } from "../../store/actions/user";
 
 const Login = () => {
+  let navigate = useNavigate();
+  const users = useSelector(getAllRegUser);
+
+  const [massege, setMassege] = useState("");
+
+  const dispatch = useDispatch();
+
   const formLogFields = [
     { name: "email", title: "Email" },
     { name: "password", title: "Password" },
@@ -20,12 +31,29 @@ const Login = () => {
 
     console.log(formObj);
 
+    const userExist = users.find((user) => user.email === formObj.email);
+
+    console.log(userExist);
+
+    if (userExist) {
+      if (userExist.password === formObj.password) {
+        dispatch(loginUser(userExist));
+        setMassege("");
+        navigate("/");
+      } else {
+        setMassege(`Password not correct`);
+      }
+    } else {
+      setMassege(`User not exist`);
+    }
+
     e.target.reset();
   }
   return (
     <div className="loginForm">
       <h2>Login</h2>
       <form onSubmit={hendleLogin}>
+        {massege ? <div>{massege}</div> : null}
         {formLogFields.map((field, index) => {
           return (
             <FormControl variant="filled" key={index}>

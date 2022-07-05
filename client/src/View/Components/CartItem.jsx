@@ -1,12 +1,10 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { chengeAmount, removeFromCart } from "../../store/actions/cart";
+import { changeCountItem, deleteFromCart } from "../../store/actions/user";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, userId }) => {
   const idProduct = useRef();
   const countOfProduct = useRef();
-
-  // console.log(countOfProduct);
 
   const dispatch = useDispatch();
   const [countChange, setCountChange] = useState(item.count);
@@ -16,12 +14,11 @@ const CartItem = ({ item }) => {
     e.preventDefault();
 
     setShowBtnChange(false);
+    console.log(countChange);
     const productId = idProduct.current.id;
-
-    dispatch(chengeAmount(productId, countChange));
+    console.log(productId);
+    dispatch(changeCountItem(userId, productId, countChange));
   };
-
-  // const save
 
   return (
     <div>
@@ -29,7 +26,7 @@ const CartItem = ({ item }) => {
       <h3 ref={countOfProduct}>{item.count}</h3>
       <button
         onClick={() => {
-          dispatch(removeFromCart(item.id));
+          dispatch(deleteFromCart(userId, item.id));
         }}
       >
         Delete
