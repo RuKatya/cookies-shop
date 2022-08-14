@@ -22,10 +22,7 @@ function Routers() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Layout pageWidth={screenWidth} userAuth={userAuth} />}
-        >
+        <Route path="/" element={<Layout pageWidth={screenWidth} userAuth={userAuth} />} >
           <Route index element={<App />} />
           <Route path="auth" element={<Auth />}>
             <Route index element={<Login />} />
